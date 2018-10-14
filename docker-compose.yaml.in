@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  selenium:
+    image: @@NAME@@-selenium:latest
+    ports:
+     - "4444:4444"
+
+  runner:
+    image: @@NAME@@-runner:latest
+    environment:
+      HUB_HOST: selenium
+      HUB_PORT: 4444
+    entrypoint: python runner.py --verbosity DEBUG
+
+# vim: set sts=2 sw=2 et:
